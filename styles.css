@@ -1,0 +1,250 @@
+:root {
+  --bg-a: #f4fff8;
+  --bg-b: #d8f7ff;
+  --ink: #1f2a44;
+  --card: #ffffff;
+  --accent: #0f8d8d;
+  --accent-2: #ff8a00;
+  --line: #b7d7dd;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Trebuchet MS", "Verdana", sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 12% 15%, #fef1b2 0 14%, transparent 15%),
+    radial-gradient(circle at 92% 12%, #c9f4ff 0 16%, transparent 17%),
+    linear-gradient(155deg, var(--bg-a), var(--bg-b));
+}
+
+.app-header {
+  width: min(920px, 94vw);
+  margin: 1.2rem auto 0;
+  text-align: center;
+}
+
+.eyebrow {
+  margin: 0 0 0.35rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #4f6981;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(1.8rem, 3.8vw, 2.7rem);
+  font-family: "Marker Felt", "Chalkboard", "Trebuchet MS", sans-serif;
+  animation: bob 4.5s ease-in-out infinite;
+}
+
+.tagline {
+  margin: 0.4rem auto 0;
+  max-width: 46rem;
+  font-size: 1rem;
+}
+
+.layout {
+  width: min(920px, 94vw);
+  margin: 0.9rem auto 1.4rem;
+  display: grid;
+  gap: 0.8rem;
+}
+
+.game-shell,
+.ad-slot,
+.safety-note,
+.legal-links-card {
+  border: 2px solid var(--line);
+  border-radius: 16px;
+  background: color-mix(in hsl, var(--card) 94%, #cdeef3);
+}
+
+.game-shell {
+  padding: 0.85rem;
+}
+
+.hud {
+  display: grid;
+  gap: 0.55rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-bottom: 0.7rem;
+}
+
+.hud-card {
+  text-align: center;
+  border-radius: 12px;
+  padding: 0.48rem 0.35rem;
+  border: 2px solid #d8e6ee;
+  background: #f8fdff;
+}
+
+.hud-label {
+  display: block;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #53677a;
+}
+
+.hud-card strong {
+  font-size: 1.3rem;
+}
+
+#game-canvas {
+  width: 100%;
+  max-width: 560px;
+  aspect-ratio: 2 / 3;
+  display: block;
+  margin: 0 auto;
+  border-radius: 14px;
+  border: 2px solid #9fc9d4;
+  background: #eafaff;
+  touch-action: manipulation;
+}
+
+.controls {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 0.75rem;
+}
+
+button {
+  flex: 1;
+  border: 0;
+  border-radius: 10px;
+  padding: 0.68rem 0.8rem;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  color: #fff;
+  background: linear-gradient(120deg, var(--accent), #26b4b4);
+}
+
+button#pause-btn {
+  background: linear-gradient(120deg, #ff9646, var(--accent-2));
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.status-text {
+  margin: 0.62rem 0 0;
+  min-height: 1.3rem;
+  text-align: center;
+  font-weight: 600;
+}
+
+.ad-slot {
+  padding: 0.8rem 0.9rem;
+  border-style: dashed;
+}
+
+.slot-title {
+  margin: 0;
+  font-weight: 700;
+}
+
+.ad-slot p {
+  margin: 0.18rem 0 0;
+}
+
+.legal-links-card {
+  padding: 0.55rem 0.85rem;
+  text-align: center;
+}
+
+.legal-links-card p {
+  margin: 0;
+  font-weight: 600;
+}
+
+.legal-links-card a {
+  color: #0c6b86;
+}
+
+.safety-note {
+  padding: 0.65rem 0.85rem 0.9rem;
+}
+
+.safety-note h2 {
+  margin: 0 0 0.3rem;
+  font-size: 1rem;
+}
+
+.safety-note p {
+  margin: 0;
+  line-height: 1.35;
+}
+
+.site-footer {
+  width: min(920px, 94vw);
+  margin: 0 auto 1.2rem;
+  text-align: center;
+  color: #4c6379;
+}
+
+.doc-layout {
+  width: min(920px, 94vw);
+  margin: 1.1rem auto 1.5rem;
+}
+
+.doc-card {
+  border: 2px solid var(--line);
+  border-radius: 16px;
+  background: color-mix(in hsl, var(--card) 95%, #d6f1f6);
+  padding: 0.95rem;
+}
+
+.doc-card h1,
+.doc-card h2 {
+  margin: 0 0 0.55rem;
+}
+
+.doc-card p,
+.doc-card li {
+  line-height: 1.45;
+}
+
+.doc-nav {
+  margin-top: 0.8rem;
+}
+
+.doc-nav a {
+  color: #0c6b86;
+  font-weight: 700;
+}
+
+@media (max-width: 620px) {
+  .tagline {
+    font-size: 0.94rem;
+  }
+
+  .controls {
+    flex-direction: column;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+  }
+}
+
+@keyframes bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}

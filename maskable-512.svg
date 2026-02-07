@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="#0f8d8d" />
+  <circle cx="182" cy="216" r="76" fill="#ffca3a" />
+  <circle cx="324" cy="298" r="88" fill="#47c5ff" />
+  <circle cx="306" cy="186" r="60" fill="#ef6bff" />
+  <text
+    x="256"
+    y="448"
+    text-anchor="middle"
+    font-family="Trebuchet MS, Verdana, sans-serif"
+    font-size="70"
+    font-weight="700"
+    fill="#ffffff"
+  >
+    PS
+  </text>
+</svg>

@@ -1,0 +1,31 @@
+{
+  "name": "PopSprint Pals",
+  "short_name": "PopSprint",
+  "description": "A fast one-tap color-matching game for elementary school players.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#d8f7ff",
+  "theme_color": "#0f8d8d",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "./icon-192.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "./icon-512.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "./maskable-512.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ]
+}

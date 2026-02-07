@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0f8d8d" />
+    <meta
+      name="description"
+      content="PopSprint Pals is a colorful one-tap PWA game for elementary school kids."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="PopSprint Pals" />
+    <meta
+      property="og:description"
+      content="Fast one-tap color matching fun for elementary school kids."
+    />
+    <meta property="og:image" content="/og-image-1200x630.jpg" />
+    <meta property="og:url" content="https://popsprint-pals.vercel.app/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="PopSprint Pals" />
+    <meta
+      name="twitter:description"
+      content="Tap matching colors, build streaks, and beat your best score."
+    />
+    <meta name="twitter:image" content="/og-image-1200x630.jpg" />
+    <title>PopSprint Pals</title>
+    <link rel="canonical" href="https://popsprint-pals.vercel.app/" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./icon-192.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <p class="eyebrow">Kid-Safe Casual PWA Prototype</p>
+      <h1>PopSprint Pals</h1>
+      <p class="tagline">Tap stars that match the target color before time runs out.</p>
+    </header>
+
+    <main class="layout">
+      <section class="legal-links-card" aria-label="Legal pages">
+        <p>
+          For parents and guardians:
+          <a href="./parents.html">Parents</a>
+          <span aria-hidden="true">|</span>
+          <a href="./privacy.html">Privacy</a>
+        </p>
+      </section>
+
+      <section class="ad-slot" id="ad-slot-top" aria-label="Top ad placeholder">
+        <p class="slot-title">Ad Slot Placeholder (Top)</p>
+        <p>Reserved for Google ad unit (child-directed configuration required).</p>
+      </section>
+
+      <section class="game-shell">
+        <div class="hud">
+          <div class="hud-card">
+            <span class="hud-label">Score</span>
+            <strong id="score-value">0</strong>
+          </div>
+          <div class="hud-card">
+            <span class="hud-label">Best</span>
+            <strong id="best-value">0</strong>
+          </div>
+          <div class="hud-card">
+            <span class="hud-label">Time</span>
+            <strong id="time-value">45</strong>
+          </div>
+        </div>
+
+        <canvas id="game-canvas" width="360" height="540" aria-label="Game board"></canvas>
+
+        <div class="controls">
+          <button id="start-btn" type="button">Start Round</button>
+          <button id="pause-btn" type="button" disabled>Pause</button>
+        </div>
+        <p id="status-text" class="status-text">Press Start Round to play.</p>
+      </section>
+
+      <section class="ad-slot" id="ad-slot-bottom" aria-label="Bottom ad placeholder">
+        <p class="slot-title">Ad Slot Placeholder (Bottom)</p>
+        <p>Use non-personalized child-safe settings before turning ads on.</p>
+      </section>
+
+      <section class="safety-note">
+        <h2>Safety + Monetization Note</h2>
+        <p>
+          This prototype uses placeholders only. Keep gameplay ad-light, avoid disruptive formats,
+          and configure child-directed ad handling before production use.
+        </p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <small>
+        PopSprint Pals prototype. Keep ad experiences kid-safe and low interruption.
+      </small>
+    </footer>
+
+    <script src="./ads-config.js" defer></script>
+    <script src="./game.js" defer></script>
+  </body>
+</html>
