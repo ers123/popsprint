@@ -30,7 +30,20 @@ Sources:
 4. After deploy, update these URLs in `index.html`:
    - `og:url`
    - `canonical`
-5. Replace `/og-image-1200x630.jpg` with your generated OG image file.
+5. Replace `/public/images/og-image-1200x630.png` with your generated OG image file.
+
+## Image Drop Location
+Place generated image files in:
+- `public/images/`
+
+Required filenames:
+- `public/images/icon-192.png`
+- `public/images/icon-512.png`
+- `public/images/maskable-512.png`
+- `public/images/apple-touch-icon.png`
+- `public/images/favicon-32.png`
+- `public/images/og-image-1200x630.png`
+- `public/images/screenshot.png` (marketing/store screenshot asset)
 
 ## Battery-Efficiency Choices
 - Frame rate capped (`20-30 FPS`) depending on reduced-motion and data-saver hints.

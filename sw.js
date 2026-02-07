@@ -1,4 +1,4 @@
-const CACHE_NAME = "popsprint-pals-v1";
+const CACHE_NAME = "popsprint-pals-v2";
 const CORE_ASSETS = [
   "./",
   "./index.html",
@@ -8,9 +8,12 @@ const CORE_ASSETS = [
   "./game.js",
   "./ads-config.js",
   "./manifest.webmanifest",
-  "./icon-192.svg",
-  "./icon-512.svg",
-  "./maskable-512.svg"
+  "./public/images/icon-192.png",
+  "./public/images/icon-512.png",
+  "./public/images/maskable-512.png",
+  "./public/images/apple-touch-icon.png",
+  "./public/images/favicon-32.png",
+  "./public/images/og-image-1200x630.png"
 ];
 
 self.addEventListener("install", (event) => {
