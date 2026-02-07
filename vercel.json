@@ -1,4 +1,19 @@
 {
+  "cleanUrls": false,
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/privacy",
+      "destination": "/privacy.html"
+    },
+    {
+      "source": "/parents",
+      "destination": "/parents.html"
+    }
+  ],
   "headers": [
     {
       "source": "/",
@@ -74,6 +89,15 @@
     },
     {
       "source": "/public/images/og-image-1200x630.png",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/public/images/screenshot.png",
       "headers": [
         {
           "key": "Cache-Control",

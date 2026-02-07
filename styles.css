@@ -97,6 +97,65 @@ h1 {
   font-size: 1.3rem;
 }
 
+.xp-rail,
+.mission-card,
+.round-summary,
+.achievement-card {
+  border: 2px solid #d6e7ef;
+  border-radius: 12px;
+  background: #f8fdff;
+  padding: 0.55rem 0.65rem;
+  margin-bottom: 0.68rem;
+}
+
+.xp-rail p,
+.mission-card p,
+.round-summary p {
+  margin: 0;
+}
+
+.xp-track {
+  margin-top: 0.42rem;
+  width: 100%;
+  height: 12px;
+  border-radius: 999px;
+  background: #ddeefa;
+  overflow: hidden;
+}
+
+.xp-fill {
+  height: 100%;
+  width: 0%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #00a3a3, #45c7ff, #7fdb73);
+  transition: width 220ms ease-out;
+}
+
+.mission-card h2,
+.achievement-card h2,
+.round-summary h2 {
+  margin: 0 0 0.24rem;
+  font-size: 0.95rem;
+}
+
+.mission-progress {
+  margin-top: 0.2rem !important;
+  color: #456180;
+  font-weight: 700;
+}
+
+.praise-banner {
+  margin: 0 0 0.66rem;
+  min-height: 1.35rem;
+  text-align: center;
+  font-weight: 800;
+  color: #056658;
+}
+
+.praise-banner.active {
+  animation: cheer 0.9s ease-out;
+}
+
 #game-canvas {
   width: 100%;
   max-width: 560px;
@@ -143,6 +202,12 @@ button:disabled {
   font-weight: 600;
 }
 
+.round-summary {
+  margin-top: 0.72rem;
+  background: #fff8e7;
+  border-color: #f5ddb0;
+}
+
 .ad-slot {
   padding: 0.8rem 0.9rem;
   border-style: dashed;
@@ -183,6 +248,21 @@ button:disabled {
 .safety-note p {
   margin: 0;
   line-height: 1.35;
+}
+
+.achievement-card ul {
+  margin: 0;
+  padding-left: 1.15rem;
+}
+
+.achievement-card li {
+  margin: 0.3rem 0;
+  line-height: 1.35;
+}
+
+.achievement-card li.unlocked {
+  color: #1a6f48;
+  font-weight: 700;
 }
 
 .site-footer {
@@ -246,5 +326,20 @@ button:disabled {
   }
   50% {
     transform: translateY(-3px);
+  }
+}
+
+@keyframes cheer {
+  0% {
+    transform: scale(0.97);
+    opacity: 0.25;
+  }
+  45% {
+    transform: scale(1.04);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
   }
 }

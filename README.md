@@ -7,6 +7,7 @@ This project is a lightweight, kid-friendly casual web game designed for element
 - Bright visuals and simple rules (tap the target color only).
 - Mobile-first PWA shell.
 - Built-in ad placeholders (no live ad scripts enabled by default).
+- Level/XP progression, round missions, and achievements for replayability.
 
 ## Why This Direction
 - Casual genres dominate mobile downloads. Sensor Tower reports that four of the top five game genres by download share are casual categories, with puzzle leading by volume.
@@ -32,6 +33,12 @@ Sources:
    - `canonical`
 5. Replace `/public/images/og-image-1200x630.png` with your generated OG image file.
 
+If you see a Vercel 404:
+1. Confirm `Production Branch` is `main`.
+2. Keep `Root Directory` at repo root.
+3. Keep `Build Command` and `Output Directory` empty.
+4. Redeploy with build cache disabled once.
+
 ## Image Drop Location
 Place generated image files in:
 - `public/images/`
@@ -50,6 +57,12 @@ Required filenames:
 - Auto-pause when tab/app goes to background (`visibilitychange`).
 - Small object counts and lightweight vector rendering.
 - No heavy audio, physics engines, or large image/video assets.
+
+## Progression + Gamification
+- Persistent XP and level system with gentle scaling.
+- Rotating round mission with bonus XP rewards.
+- Family-friendly achievement badges and round wrap-up panel.
+- Positive feedback triggers on streak milestones and mission completion.
 
 ## Google Ads Placeholder Setup
 Current placeholders live in:

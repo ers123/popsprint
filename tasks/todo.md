@@ -31,3 +31,27 @@
 - Added `ads-config.js` with explicit opt-in enable flag and placeholder publisher ID.
 - Updated docs with deploy instructions, ad activation steps, and mobile QA checklist.
 - Remaining manual check for you: run the mobile QA list after first Vercel deployment.
+
+---
+
+## Phase 2 Plan (UI + Gamification + Deployment Reliability)
+
+### Todo
+- [x] Confirm current baseline behavior and preserve existing battery-safe loop constraints.
+- [x] Upgrade UI layout to feel more polished for both kids and parents (cleaner hierarchy, richer HUD, clearer round summary).
+- [x] Add progression system with `Level` and `XP` that scales gently and stays easy to understand.
+- [x] Add more gamification mechanics: streak milestones, simple achievements, and celebratory positive feedback text.
+- [x] Add a lightweight mission/goal card each round (short objective to drive replayability).
+- [x] Keep gameplay changes minimal-risk and performance-safe (no heavy assets, no new libraries).
+- [x] Strengthen deployment reliability with explicit Vercel routing/static behavior checks and docs updates.
+- [x] Run syntax/config validation after edits (`node --check`, JSON parse checks) and verify no regressions.
+
+### Review
+- Added a richer family-friendly UI: expanded HUD, XP rail, mission panel, praise banner, achievement list, and round wrap-up card.
+- Implemented persistent progression with XP + levels and gentle XP scaling.
+- Implemented round missions with bonus XP rewards and progress tracking.
+- Added gamification triggers: streak praise, achievement unlocks, and end-of-round summary feedback.
+- Preserved performance profile by keeping the existing capped frame loop and lightweight rendering model.
+- Hardened deployment config with explicit static rewrites in `vercel.json` and updated rollout docs.
+- Bumped service worker cache version to force safe refresh of updated assets and logic.
+- Validation passed: `node --check` for scripts and JSON parse checks for `vercel.json` + `manifest.webmanifest`.

@@ -15,7 +15,7 @@
       content="Fast one-tap color matching fun for elementary school kids."
     />
     <meta property="og:image" content="/public/images/og-image-1200x630.png" />
-    <meta property="og:url" content="https://popsprint-pals.vercel.app/" />
+    <meta property="og:url" content="https://popsprint.vercel.app/" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="PopSprint Pals" />
     <meta
@@ -24,7 +24,7 @@
     />
     <meta name="twitter:image" content="/public/images/og-image-1200x630.png" />
     <title>PopSprint Pals</title>
-    <link rel="canonical" href="https://popsprint-pals.vercel.app/" />
+    <link rel="canonical" href="https://popsprint.vercel.app/" />
     <link rel="manifest" href="./manifest.webmanifest" />
     <link rel="icon" href="/public/images/favicon-32.png" sizes="32x32" type="image/png" />
     <link rel="apple-touch-icon" href="/public/images/apple-touch-icon.png" />
@@ -66,7 +66,34 @@
             <span class="hud-label">Time</span>
             <strong id="time-value">45</strong>
           </div>
+          <div class="hud-card">
+            <span class="hud-label">Level</span>
+            <strong id="level-value">1</strong>
+          </div>
+          <div class="hud-card">
+            <span class="hud-label">XP</span>
+            <strong id="xp-value">0/25</strong>
+          </div>
+          <div class="hud-card">
+            <span class="hud-label">Streak</span>
+            <strong id="streak-value">0</strong>
+          </div>
         </div>
+
+        <section class="xp-rail" aria-label="Experience progress">
+          <p><span id="xp-summary">Level 1 progress</span></p>
+          <div class="xp-track" role="presentation">
+            <div id="xp-fill" class="xp-fill"></div>
+          </div>
+        </section>
+
+        <section class="mission-card" aria-label="Round mission">
+          <h2>Round Mission</h2>
+          <p id="mission-text">Start a round to reveal your mission.</p>
+          <p id="mission-progress" class="mission-progress">Progress: 0%</p>
+        </section>
+
+        <p id="praise-banner" class="praise-banner" aria-live="polite"></p>
 
         <canvas id="game-canvas" width="360" height="540" aria-label="Game board"></canvas>
 
@@ -75,6 +102,14 @@
           <button id="pause-btn" type="button" disabled>Pause</button>
         </div>
         <p id="status-text" class="status-text">Press Start Round to play.</p>
+
+        <section id="round-summary" class="round-summary" hidden>
+          <h2>Round Wrap-Up</h2>
+          <p id="summary-line">Great effort.</p>
+          <p id="summary-xp">XP gained: 0</p>
+          <p id="summary-mission">Mission: Not started</p>
+          <p id="summary-achievement">New badges: None this round</p>
+        </section>
       </section>
 
       <section class="ad-slot" id="ad-slot-bottom" aria-label="Bottom ad placeholder">
@@ -88,6 +123,16 @@
           This prototype uses placeholders only. Keep gameplay ad-light, avoid disruptive formats,
           and configure child-directed ad handling before production use.
         </p>
+      </section>
+
+      <section class="achievement-card" aria-label="Achievements">
+        <h2>Family Achievements</h2>
+        <ul id="achievement-list">
+          <li data-achievement="first-steps">First Steps: Score 10+ in one round</li>
+          <li data-achievement="streak-star">Streak Star: Reach a streak of 12</li>
+          <li data-achievement="steady-hands">Steady Hands: 15+ correct taps with 0 misses</li>
+          <li data-achievement="level-climber">Level Climber: Reach Level 5</li>
+        </ul>
       </section>
     </main>
 
