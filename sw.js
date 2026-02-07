@@ -1,4 +1,4 @@
-const CACHE_NAME = "popsprint-pals-v3";
+const CACHE_NAME = "popsprint-pals-v4";
 const CORE_ASSETS = [
   "./",
   "./index.html",
@@ -6,7 +6,6 @@ const CORE_ASSETS = [
   "./parents.html",
   "./styles.css",
   "./game.js",
-  "./ads-config.js",
   "./manifest.webmanifest",
   "./public/images/icon-192.png",
   "./public/images/icon-512.png",

@@ -6,143 +6,153 @@
     <meta name="theme-color" content="#0f8d8d" />
     <meta
       name="description"
-      content="PopSprint Pals is a colorful one-tap PWA game for elementary school kids."
+      content="PopSprint Pals is a colorful one-tap PWA game for elementary school kids and families."
     />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="PopSprint Pals" />
     <meta
       property="og:description"
-      content="Fast one-tap color matching fun for elementary school kids."
+      content="Fast one-tap color matching fun with missions, levels, and family-friendly achievements."
     />
-    <meta property="og:image" content="/public/images/og-image-1200x630.png" />
+    <meta property="og:image" content="./public/images/og-image-1200x630.png" />
     <meta property="og:url" content="https://popsprint.vercel.app/" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="PopSprint Pals" />
     <meta
       name="twitter:description"
-      content="Tap matching colors, build streaks, and beat your best score."
+      content="Tap matching colors, build streaks, and level up together."
     />
-    <meta name="twitter:image" content="/public/images/og-image-1200x630.png" />
+    <meta name="twitter:image" content="./public/images/og-image-1200x630.png" />
     <title>PopSprint Pals</title>
     <link rel="canonical" href="https://popsprint.vercel.app/" />
     <link rel="manifest" href="./manifest.webmanifest" />
-    <link rel="icon" href="/public/images/favicon-32.png" sizes="32x32" type="image/png" />
-    <link rel="apple-touch-icon" href="/public/images/apple-touch-icon.png" />
+    <link rel="icon" href="./public/images/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="./public/images/apple-touch-icon.png" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
+    <div class="aurora aurora-a" aria-hidden="true"></div>
+    <div class="aurora aurora-b" aria-hidden="true"></div>
+
     <header class="app-header">
-      <p class="eyebrow">Kid-Safe Casual PWA Prototype</p>
+      <p class="eyebrow">Family Arcade Mode</p>
       <h1>PopSprint Pals</h1>
-      <p class="tagline">Tap stars that match the target color before time runs out.</p>
+      <p class="tagline">
+        Tap matching stars, chain streaks, complete missions, and climb levels together.
+      </p>
+      <p class="hero-note">
+        Built for quick fun breaks with kids, siblings, and parents on one device.
+      </p>
     </header>
 
     <main class="layout">
-      <section class="legal-links-card" aria-label="Legal pages">
-        <p>
-          For parents and guardians:
+      <section class="top-strip" aria-label="Quick links and mode">
+        <p class="top-strip-left">One-tap action • 45 second rounds • instant restart</p>
+        <p class="top-strip-right">
           <a href="./parents.html">Parents</a>
           <span aria-hidden="true">|</span>
           <a href="./privacy.html">Privacy</a>
         </p>
       </section>
 
-      <section class="ad-slot" id="ad-slot-top" aria-label="Top ad placeholder">
-        <p class="slot-title">Ad Slot Placeholder (Top)</p>
-        <p>Reserved for Google ad unit (child-directed configuration required).</p>
-      </section>
+      <section class="experience-grid">
+        <section class="game-shell">
+          <div class="hud">
+            <div class="hud-card">
+              <span class="hud-label">Score</span>
+              <strong id="score-value">0</strong>
+            </div>
+            <div class="hud-card">
+              <span class="hud-label">Best</span>
+              <strong id="best-value">0</strong>
+            </div>
+            <div class="hud-card">
+              <span class="hud-label">Time</span>
+              <strong id="time-value">45</strong>
+            </div>
+            <div class="hud-card">
+              <span class="hud-label">Level</span>
+              <strong id="level-value">1</strong>
+            </div>
+            <div class="hud-card">
+              <span class="hud-label">XP</span>
+              <strong id="xp-value">0/25</strong>
+            </div>
+            <div class="hud-card">
+              <span class="hud-label">Streak</span>
+              <strong id="streak-value">0</strong>
+            </div>
+          </div>
 
-      <section class="game-shell">
-        <div class="hud">
-          <div class="hud-card">
-            <span class="hud-label">Score</span>
-            <strong id="score-value">0</strong>
-          </div>
-          <div class="hud-card">
-            <span class="hud-label">Best</span>
-            <strong id="best-value">0</strong>
-          </div>
-          <div class="hud-card">
-            <span class="hud-label">Time</span>
-            <strong id="time-value">45</strong>
-          </div>
-          <div class="hud-card">
-            <span class="hud-label">Level</span>
-            <strong id="level-value">1</strong>
-          </div>
-          <div class="hud-card">
-            <span class="hud-label">XP</span>
-            <strong id="xp-value">0/25</strong>
-          </div>
-          <div class="hud-card">
-            <span class="hud-label">Streak</span>
-            <strong id="streak-value">0</strong>
-          </div>
-        </div>
+          <section class="xp-rail" aria-label="Experience progress">
+            <p><span id="xp-summary">Level 1 progress</span></p>
+            <div class="xp-track" role="presentation">
+              <div id="xp-fill" class="xp-fill"></div>
+            </div>
+          </section>
 
-        <section class="xp-rail" aria-label="Experience progress">
-          <p><span id="xp-summary">Level 1 progress</span></p>
-          <div class="xp-track" role="presentation">
-            <div id="xp-fill" class="xp-fill"></div>
+          <section class="mission-card" aria-label="Round mission">
+            <h2>Round Mission</h2>
+            <p id="mission-text">Start a round to reveal your mission.</p>
+            <p id="mission-progress" class="mission-progress">Progress: 0%</p>
+          </section>
+
+          <p id="praise-banner" class="praise-banner" aria-live="polite"></p>
+
+          <canvas id="game-canvas" width="360" height="540" aria-label="Game board"></canvas>
+
+          <div class="controls">
+            <button id="start-btn" type="button">Start Round</button>
+            <button id="pause-btn" type="button" disabled>Pause</button>
           </div>
+          <p id="status-text" class="status-text">Press Start Round to play.</p>
+
+          <section id="round-summary" class="round-summary" hidden>
+            <h2>Round Wrap-Up</h2>
+            <p id="summary-line">Great effort.</p>
+            <p id="summary-xp">XP gained: 0</p>
+            <p id="summary-mission">Mission: Not started</p>
+            <p id="summary-achievement">New badges: None this round</p>
+          </section>
         </section>
 
-        <section class="mission-card" aria-label="Round mission">
-          <h2>Round Mission</h2>
-          <p id="mission-text">Start a round to reveal your mission.</p>
-          <p id="mission-progress" class="mission-progress">Progress: 0%</p>
-        </section>
+        <aside class="side-column">
+          <section class="achievement-card" aria-label="Achievements">
+            <h2>Family Achievements</h2>
+            <ul id="achievement-list">
+              <li data-achievement="first-steps">First Steps: Score 10+ in one round</li>
+              <li data-achievement="streak-star">Streak Star: Reach a streak of 12</li>
+              <li data-achievement="steady-hands">Steady Hands: 15+ correct taps with 0 misses</li>
+              <li data-achievement="level-climber">Level Climber: Reach Level 5</li>
+            </ul>
+          </section>
 
-        <p id="praise-banner" class="praise-banner" aria-live="polite"></p>
+          <section class="family-playbook">
+            <h2>Family Playbook</h2>
+            <ul>
+              <li>Call out the target color together before each tap.</li>
+              <li>Hand off turns every round for team rhythm.</li>
+              <li>Try to beat yesterday's level as a family challenge.</li>
+            </ul>
+          </section>
 
-        <canvas id="game-canvas" width="360" height="540" aria-label="Game board"></canvas>
-
-        <div class="controls">
-          <button id="start-btn" type="button">Start Round</button>
-          <button id="pause-btn" type="button" disabled>Pause</button>
-        </div>
-        <p id="status-text" class="status-text">Press Start Round to play.</p>
-
-        <section id="round-summary" class="round-summary" hidden>
-          <h2>Round Wrap-Up</h2>
-          <p id="summary-line">Great effort.</p>
-          <p id="summary-xp">XP gained: 0</p>
-          <p id="summary-mission">Mission: Not started</p>
-          <p id="summary-achievement">New badges: None this round</p>
-        </section>
-      </section>
-
-      <section class="ad-slot" id="ad-slot-bottom" aria-label="Bottom ad placeholder">
-        <p class="slot-title">Ad Slot Placeholder (Bottom)</p>
-        <p>Use non-personalized child-safe settings before turning ads on.</p>
-      </section>
-
-      <section class="safety-note">
-        <h2>Safety + Monetization Note</h2>
-        <p>
-          This prototype uses placeholders only. Keep gameplay ad-light, avoid disruptive formats,
-          and configure child-directed ad handling before production use.
-        </p>
-      </section>
-
-      <section class="achievement-card" aria-label="Achievements">
-        <h2>Family Achievements</h2>
-        <ul id="achievement-list">
-          <li data-achievement="first-steps">First Steps: Score 10+ in one round</li>
-          <li data-achievement="streak-star">Streak Star: Reach a streak of 12</li>
-          <li data-achievement="steady-hands">Steady Hands: 15+ correct taps with 0 misses</li>
-          <li data-achievement="level-climber">Level Climber: Reach Level 5</li>
-        </ul>
+          <section class="family-note">
+            <h2>Why This Works</h2>
+            <p>
+              Short rounds, shared goals, and positive feedback make this easy for children and
+              fun for adults.
+            </p>
+          </section>
+        </aside>
       </section>
     </main>
 
     <footer class="site-footer">
       <small>
-        PopSprint Pals prototype. Keep ad experiences kid-safe and low interruption.
+        PopSprint Pals family build. Quick rounds, positive pacing, replay-ready progression.
       </small>
     </footer>
 
-    <script src="./ads-config.js" defer></script>
     <script src="./game.js" defer></script>
   </body>
 </html>

@@ -55,3 +55,26 @@
 - Hardened deployment config with explicit static rewrites in `vercel.json` and updated rollout docs.
 - Bumped service worker cache version to force safe refresh of updated assets and logic.
 - Validation passed: `node --check` for scripts and JSON parse checks for `vercel.json` + `manifest.webmanifest`.
+
+---
+
+## Phase 3 Plan (Bold Visual Refresh + No Ads)
+
+### Todo
+- [x] Remove ad placeholder sections and all ad-related script references from the homepage and service worker cache list.
+- [x] Redesign the visual theme with a more premium, playful style that appeals to both kids and parents (hero polish, stronger typography hierarchy, enhanced cards).
+- [x] Refine layout flow so gameplay, mission, progression, and achievements feel more intentional and less prototype-like.
+- [x] Add high-impact but lightweight visual flair (subtle layered backgrounds, clear section framing, purposeful motion only where valuable).
+- [x] Keep gameplay logic intact while tightening supporting copy for clarity and excitement.
+- [x] Recheck deployment-related config and docs to ensure no ad-specific references remain and static hosting behavior stays stable.
+- [x] Run syntax/config validation (`node --check` + JSON parse checks) and update final review notes.
+
+### Review
+- Rebuilt the home experience layout with a stronger hero, cleaner information flow, and a premium two-column game + side-panel structure.
+- Removed all ad placeholder UI and removed ad runtime/config references from `index.html`, `sw.js`, and `vercel.json`.
+- Reworked the visual language with layered aurora backgrounds, glass-like cards, richer color contrast, and improved responsive behavior.
+- Preserved core gameplay/progression logic and existing IDs to avoid regressions while improving copy and presentation.
+- Updated `manifest.webmanifest` icon paths to hosting-safe relative paths for broader static-host compatibility.
+- Rewrote `README.md` to reflect an ad-free product direction and clearer Vercel/GitHub Pages deployment instructions.
+- Bumped service worker cache version to force a clean rollout of the redesigned UI (`popsprint-pals-v4`).
+- Validation passed: `node --check` for JS files and JSON parse checks for `vercel.json` + `manifest.webmanifest`.
