@@ -294,6 +294,12 @@ button#pause-btn {
   box-shadow: 0 7px 14px rgba(117, 89, 21, 0.25);
 }
 
+button#fullscreen-btn {
+  color: #062a33;
+  background: linear-gradient(120deg, #9ce7ff, #7de4ff);
+  box-shadow: 0 7px 14px rgba(18, 101, 124, 0.22);
+}
+
 button:disabled {
   cursor: not-allowed;
   opacity: 0.5;
@@ -354,6 +360,23 @@ button:disabled {
   margin: 0 auto 1.18rem;
   text-align: center;
   color: #9fc7ea;
+}
+
+body.game-focus .top-strip-left,
+body.game-focus .hero-note,
+body.game-focus .side-column,
+body.game-focus .site-footer {
+  display: none;
+}
+
+body.game-focus .experience-grid {
+  grid-template-columns: 1fr;
+}
+
+body.is-fullscreen .app-header {
+  margin-top: 0.5rem;
+  padding-top: 0.7rem;
+  padding-bottom: 0.6rem;
 }
 
 .doc-layout {

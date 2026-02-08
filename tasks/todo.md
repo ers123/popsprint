@@ -78,3 +78,29 @@
 - Rewrote `README.md` to reflect an ad-free product direction and clearer Vercel/GitHub Pages deployment instructions.
 - Bumped service worker cache version to force a clean rollout of the redesigned UI (`popsprint-pals-v4`).
 - Validation passed: `node --check` for JS files and JSON parse checks for `vercel.json` + `manifest.webmanifest`.
+
+---
+
+## Phase 4 Plan (Fullscreen-First Mobile + Immersion Upgrade)
+
+### Todo
+- [x] Add a fullscreen-first start flow on mobile (request fullscreen on game start with graceful fallback).
+- [x] Add clear in-UI fullscreen controls (enter/exit) and keep keyboard shortcut support for desktop.
+- [x] Ensure canvas sizing and input mapping stay correct when fullscreen changes or device orientation changes.
+- [x] Add lightweight immersion upgrades tied to fullscreen play (focus mode states, cleaner HUD behavior, stronger play-state transitions).
+- [x] Keep power usage stable by preserving frame caps and avoiding heavy effects.
+- [x] Add deterministic test hooks requested by game-dev workflow (`window.render_game_to_text`, `window.advanceTime(ms)`).
+- [x] Create/update `progress.md` in the game project with original prompt + implementation notes for handoff continuity.
+- [x] Run validation (`node --check`, JSON parse checks) and update final review summary.
+
+### Review
+- Added fullscreen-first start behavior for mobile sessions: when round starts, the game attempts fullscreen and gracefully falls back with clear status text if unavailable.
+- Added explicit fullscreen controls in the UI (`#fullscreen-btn`) and desktop shortcut support (`f` key), with synced label state for enter/exit.
+- Added fullscreen/focus state classes (`game-focus`, `is-fullscreen`) to make active gameplay more immersive by reducing non-critical UI during rounds.
+- Added viewport/orientation handling hooks so rendering stays visually correct after fullscreen/orientation changes.
+- Preserved existing capped-FPS loop and lightweight canvas rendering to keep battery usage stable.
+- Added deterministic automation hooks for game testing and accessibility-style state reads:
+  `window.render_game_to_text()` and `window.advanceTime(ms)`.
+- Created and updated `progress.md` with original prompt, implementation notes, and test-loop observations for handoff continuity.
+- Ran Playwright workflow client with screenshot + state capture; verified running/paused transitions and current game state payload without new console error artifact files.
+- Validation passed: `node --check` on `game.js` and `sw.js`, and JSON parse checks on `vercel.json` and `manifest.webmanifest`.

@@ -52,6 +52,11 @@
   const statusText = document.getElementById("status-text");
   const startButton = document.getElementById("start-btn");
   const pauseButton = document.getElementById("pause-btn");
+  const fullscreenButton = document.getElementById("fullscreen-btn");
+  const gameShell = document.querySelector(".game-shell");
+
+  const isLikelyMobile = window.matchMedia("(max-width: 900px)").matches
+    || window.matchMedia("(pointer: coarse)").matches;
 
   const storedAchievements = safeParseJson(localStorage.getItem(UNLOCKED_ACHIEVEMENTS_KEY), {});
   const initialXp = Number(localStorage.getItem(TOTAL_XP_KEY) || 0);
@@ -91,6 +96,7 @@
   updateAchievementUI();
   updateHud(true);
   drawFrame();
+  syncFocusMode();
 
   function safeParseJson(value, fallback) {
     try {
@@ -191,6 +197,38 @@
     startButton.textContent = state.running ? "Restart Round" : "Start Round";
     pauseButton.disabled = !state.running;
     pauseButton.textContent = state.paused ? "Resume" : "Pause";
+    fullscreenButton.textContent = document.fullscreenElement ? "Exit Fullscreen" : "Fullscreen";
+  }
+
+  function syncFocusMode() {
+    document.body.classList.toggle("game-focus", state.running);
+    document.body.classList.toggle("is-fullscreen", Boolean(document.fullscreenElement));
+    updateControls();
+  }
+
+  async function requestFullscreenForGame() {
+    if (!gameShell || document.fullscreenElement || !gameShell.requestFullscreen) {
+      return false;
+    }
+
+    try {
+      await gameShell.requestFullscreen({ navigationUI: "hide" });
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
+  async function toggleFullscreen() {
+    if (document.fullscreenElement) {
+      await document.exitFullscreen();
+      return;
+    }
+
+    const entered = await requestFullscreenForGame();
+    if (!entered) {
+      setStatus("Fullscreen is unavailable here. Focus mode is still active.");
+    }
   }
 
   function buildMission() {
@@ -412,6 +450,7 @@
 
     roundSummary.hidden = true;
     praiseBanner.textContent = "";
+    syncFocusMode();
     updateHud(true);
     updateMissionUI();
     updateControls();
@@ -446,6 +485,7 @@
       ? "New badges: " + state.newAchievementsRound.join(", ")
       : "New badges: None this round";
     roundSummary.hidden = false;
+    syncFocusMode();
 
     updateMissionUI();
     updateHud(true);
@@ -471,6 +511,10 @@
       startLoop();
     }
     updateControls();
+  }
+
+  function handleViewportChange() {
+    drawFrame();
   }
 
   function addRipple(x, y, color) {
@@ -701,11 +745,30 @@
 
   startButton.addEventListener("click", () => {
     beginRound();
+    if (isLikelyMobile) {
+      requestFullscreenForGame().then((entered) => {
+        if (!entered) {
+          setStatus("Tip: use Fullscreen for the best mobile feel.");
+        }
+      });
+    }
   });
 
   pauseButton.addEventListener("click", () => {
     togglePause(false);
   });
+
+  fullscreenButton.addEventListener("click", () => {
+    toggleFullscreen();
+  });
+
+  document.addEventListener("fullscreenchange", () => {
+    syncFocusMode();
+    handleViewportChange();
+  });
+
+  window.addEventListener("resize", handleViewportChange);
+  window.addEventListener("orientationchange", handleViewportChange);
 
   document.addEventListener("visibilitychange", () => {
     if (document.hidden && state.running && !state.paused) {
@@ -729,8 +792,63 @@
       } else {
         togglePause(false);
       }
+      return;
+    }
+
+    if (event.code === "KeyF") {
+      event.preventDefault();
+      toggleFullscreen();
     }
   });
+
+  function renderGameToText() {
+    const mode = state.running ? (state.paused ? "paused" : "running") : "menu";
+    const payload = {
+      coordinate_system: "origin:top-left,x:right,y:down,world:360x540",
+      mode,
+      time_left: Number(state.timeLeft.toFixed(2)),
+      score: state.score,
+      best: state.best,
+      level: state.levelMeta.level,
+      streak: state.streak,
+      mission: state.mission
+        ? {
+            type: state.mission.type,
+            target: state.mission.target,
+            completed: state.missionCompleted
+          }
+        : null,
+      target_color: palette[state.targetIndex].name,
+      stars: state.stars.map((star) => ({
+        x: Number(star.x.toFixed(1)),
+        y: Number(star.y.toFixed(1)),
+        radius: Number(star.radius.toFixed(1)),
+        color: palette[star.colorIndex].name
+      }))
+    };
+    return JSON.stringify(payload);
+  }
+
+  function advanceTime(ms) {
+    const safeMs = Math.max(0, Number(ms) || 0);
+    if (!state.running || state.paused || safeMs === 0) {
+      drawFrame();
+      return;
+    }
+
+    let remaining = safeMs;
+    while (remaining >= FRAME_MS) {
+      updateFrame(FRAME_MS / 1000);
+      remaining -= FRAME_MS;
+      if (!state.running) {
+        break;
+      }
+    }
+    drawFrame();
+  }
+
+  window.render_game_to_text = renderGameToText;
+  window.advanceTime = advanceTime;
 
   if ("serviceWorker" in navigator) {
     window.addEventListener("load", () => {
